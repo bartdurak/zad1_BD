@@ -39,11 +39,7 @@ public class ServiceController {
 
     Optional<Service> service = serviceRepository.findById(id);
 
-    if (service.isPresent()) {
-      return ResponseEntity.ok(service.get());
-    } else {
-      return ResponseEntity.notFound().build();
-    }
+    return service.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
   }
 
   @PostMapping("/services")

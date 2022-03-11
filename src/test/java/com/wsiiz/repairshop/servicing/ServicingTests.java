@@ -40,7 +40,7 @@ public class ServicingTests {
     // when
 
     Service s = serviceService.add(service);
-    s = serviceRepository.getOne(s.getId());
+    s = serviceRepository.getById(s.getId());
 
     // then
 
