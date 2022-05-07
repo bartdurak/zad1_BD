@@ -19,4 +19,9 @@ public class ServiceService implements AbstractService<Service> {
     return serviceRepository.save(service);
   }
 
+  @Override
+  public Service change(Service service) {
+    return serviceRepository.save(service);
+  }
+
 }

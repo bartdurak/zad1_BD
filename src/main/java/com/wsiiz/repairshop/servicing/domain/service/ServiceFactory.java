@@ -12,6 +12,7 @@ public class ServiceFactory implements AbstractFactory<Service> {
   @Override
   public Service create() {
     Service service = new Service();
+    service.setCarType(CarType.CAR);
     service.setRequiresWashing(false);
     return service;
   }
