@@ -37,12 +37,15 @@ public class MainUI extends UI implements I18nAware {
   private Component createNavigationBar() {
     MVerticalLayout m = new MVerticalLayout().withWidth("150px").withStyleName("main-menu");
     m.addComponent(createNavButton(i18n("service"), "service"));
+    m.addComponent(createNavButton(i18n("customer"), "customer"));
     return m;
   }
 
   private Component createNavButton(String caption, String path) {
     Button button = new Button(caption);
     button.addClickListener(e -> getNavigator().navigateTo(path));
+    button.addStyleName("main-menu-option");
+    button.addStyleName("main-menu-option-" + path);
     return button;
   }
 
