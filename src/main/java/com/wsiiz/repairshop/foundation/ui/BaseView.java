@@ -12,6 +12,7 @@ import com.vaadin.ui.themes.ValoTheme;
 import com.wsiiz.repairshop.foundation.domain.AbstractFactory;
 import com.wsiiz.repairshop.foundation.domain.AbstractService;
 import com.wsiiz.repairshop.foundation.domain.BaseEntity;
+import com.wsiiz.repairshop.foundation.ui.dialog.ConfirmDialog;
 import com.wsiiz.repairshop.foundation.ui.i18n.I18nAware;
 import java.util.List;
 import javax.annotation.PostConstruct;
@@ -85,9 +86,15 @@ public abstract class BaseView<E extends BaseEntity> extends VerticalLayout impl
     addColumns(table);
 
     table.addComponentColumn(entity -> new MHorizontalLayout(
-            new MButton(VaadinIcons.EDIT, e -> {
-              editInPopup(entity);
-            }).withStyleName(ValoTheme.BUTTON_BORDERLESS).withStyleName("no-padding")))
+        new MButton(VaadinIcons.EDIT, e -> {
+          editInPopup(entity);
+        }).withStyleName(ValoTheme.BUTTON_BORDERLESS).withStyleName("no-padding"),
+        new MButton(VaadinIcons.TRASH, e -> {
+          new ConfirmDialog(i18n("deleteConfirmation"), () -> {
+            repository.delete(entity);
+            loadEntities();
+          }, getUI());
+        }).withStyleName(ValoTheme.BUTTON_BORDERLESS).withStyleName("no-padding")))
         .setCaption(i18n(BaseView.class, "actions"))
         .setWidth(120);
 
