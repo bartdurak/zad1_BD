@@ -1,4 +1,8 @@
 package com.wsiiz.repairshop.enterprise.domain;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface BranchRepository {
+import java.util.List;
+
+public interface BranchRepository extends JpaRepository <Branch, Long> {
+    List<Branch> findByAddressLocalityOrIdDep(String locality, Long idDep);
 }

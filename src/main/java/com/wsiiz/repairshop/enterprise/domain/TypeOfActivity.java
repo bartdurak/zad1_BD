@@ -1,4 +1,7 @@
 package com.wsiiz.repairshop.enterprise.domain;
 
-public class TypeOfActivity {
+public  enum TypeOfActivity {
+    SERVICE,
+    LALE,
+    MIXED;
 }
